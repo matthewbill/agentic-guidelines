@@ -89,19 +89,23 @@ function updateClaudeSettings(cwd) {
   // Add or update the SessionStart hook
   claudeSettings.hooks = claudeSettings.hooks || {};
 
-  const hookCommand = {
-    type: 'command',
-    command: 'cat docs/guidelines/guidelines.md'
+  const hookEntry = {
+    hooks: [
+      {
+        type: 'command',
+        command: 'cat docs/guidelines/guidelines.md'
+      }
+    ]
   };
 
   // Check if hook already exists
   const existingHooks = claudeSettings.hooks.SessionStart || [];
   const hookExists = existingHooks.some(
-    h => h.type === 'command' && h.command === hookCommand.command
+    h => h.hooks && h.hooks.some(inner => inner.type === 'command' && inner.command === 'cat docs/guidelines/guidelines.md')
   );
 
   if (!hookExists) {
-    claudeSettings.hooks.SessionStart = [...existingHooks, hookCommand];
+    claudeSettings.hooks.SessionStart = [...existingHooks, hookEntry];
   }
 
   fs.writeFileSync(claudeSettingsPath, JSON.stringify(claudeSettings, null, 2) + '\n');

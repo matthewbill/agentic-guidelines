@@ -111,23 +111,26 @@ function updateClaudeSettings(cwd) {
 function updatePackageJson(cwd, repo, folders) {
   const pkgPath = path.join(cwd, 'package.json');
 
+  let pkg;
   if (!fs.existsSync(pkgPath)) {
-    console.warn('Warning: No package.json found, skipping script addition');
-    return;
+    console.log('  No package.json found, creating one...');
+    pkg = {
+      name: path.basename(cwd),
+      version: '0.1.0',
+      scripts: {}
+    };
+  } else {
+    pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
   }
 
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
   pkg.scripts = pkg.scripts || {};
 
+  // Build sync script with --force and any folders used
   let syncScript;
   if (folders && folders.length > 0) {
-    // Create a script that syncs each folder
-    const commands = folders.map(folder =>
-      `npx giget ${repo}/${folder} ${TARGET_DIR}/${folder} --force`
-    );
-    syncScript = commands.join(' && ');
+    syncScript = `npx agentic-guidelines --sync --force --repo ${repo} --folders ${folders.join(',')}`;
   } else {
-    syncScript = `npx giget ${repo} ${TARGET_DIR} --force`;
+    syncScript = `npx agentic-guidelines --sync --force --repo ${repo}`;
   }
 
   if (pkg.scripts['sync:guidelines'] !== syncScript) {

@@ -20,7 +20,7 @@ This will:
 
 - Download guidelines to `docs/guidelines/`
 - Create/update `.claude/settings.json` with the SessionStart hook
-- Add `sync:guidelines` script to your `package.json`
+- Add `sync:guidelines` script to your `package.json` (creates `package.json` if it doesn't exist)
 
 ### Update guidelines
 
@@ -41,7 +41,7 @@ npx agentic-guidelines --sync
 | `--help`, `-h` | Show help message |
 | `--sync` | Only sync guidelines (skip config updates) |
 | `--force` | Overwrite existing files without prompting |
-| `--repo <repo>` | GitHub repo to pull guidelines from (default: `gh:mdb/agentic-guidelines/guidelines`) |
+| `--repo <repo>` | GitHub repo to pull guidelines from (default: `gh:matthewbill/agentic-guidelines/guidelines`) |
 | `--token <token>` | GitHub token for private repos |
 | `--folders <list>` | Comma-separated list of folders to download |
 
@@ -78,6 +78,8 @@ Or set the `GITHUB_TOKEN` environment variable:
 ```bash
 GITHUB_TOKEN=ghp_xxx npx agentic-guidelines --repo gh:myorg/private-repo/guidelines
 ```
+
+Note: The `--token` flag is only used for the initial setup. The generated `sync:guidelines` script does not include the token - set `GITHUB_TOKEN` as an environment variable when running sync for private repos.
 
 ## How it works with Claude Code
 

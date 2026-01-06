@@ -1,6 +1,6 @@
 {
   "name": "agentic-guidelines",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI to setup shared coding guidelines for Claude Code",
   "type": "module",
   "bin": {

@@ -24,7 +24,7 @@ Options:
   --help, -h        Show this help message
   --sync            Only sync guidelines (skip config updates)
   --force           Overwrite existing files without prompting
-  --repo <repo>     GitHub repo to pull guidelines from (default: gh:mdb/agentic-guidelines/guidelines)
+  --repo <repo>     GitHub repo to pull guidelines from (default: gh:matthewbill/agentic-guidelines/guidelines)
                     Example: --repo gh:myorg/my-guidelines/guidelines
   --token <token>   GitHub token for private repos (or set GITHUB_TOKEN env var)
   --folders <list>  Comma-separated list of folders to download (downloads all if not specified)

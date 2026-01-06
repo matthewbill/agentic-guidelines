@@ -2,7 +2,7 @@ import { downloadTemplate } from 'giget';
 import fs from 'fs';
 import path from 'path';
 
-const DEFAULT_REPO = 'gh:mdb/agentic-guidelines/guidelines';
+const DEFAULT_REPO = 'gh:matthewbill/agentic-guidelines/guidelines';
 const TARGET_DIR = 'docs/guidelines';
 
 export async function setupGuidelines(options = {}) {

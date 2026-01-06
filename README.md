@@ -93,4 +93,4 @@ This injects the guidelines into Claude's context.
 
 ## License
 
-MIT
+UNLICENSED - All rights reserved.

@@ -46,13 +46,17 @@ Private repos:
 }
 
 const foldersArg = getArgValue('--folders');
+const repoArg = getArgValue('--repo');
+const tokenArg = getArgValue('--token');
+
 const options = {
   syncOnly: args.includes('--sync'),
   force: args.includes('--force'),
-  repo: getArgValue('--repo'),
-  token: getArgValue('--token'),
   folders: foldersArg ? foldersArg.split(',').map(f => f.trim()) : null
 };
+
+if (repoArg) options.repo = repoArg;
+if (tokenArg) options.token = tokenArg;
 
 setupGuidelines(options).catch((err) => {
   console.error('Error:', err.message);
